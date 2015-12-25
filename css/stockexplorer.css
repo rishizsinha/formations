@@ -1,0 +1,164 @@
+/** 
+ *	GENERAL UTILITIES
+ */
+.center {
+	margin: 0 auto;
+}
+
+svg {
+  pointer-events: all;
+}
+
+td, th {
+	padding: 8px 15px !important;
+	min-width: 20px;
+}
+/*.table {
+	width:65px !important;
+}*/
+
+/**
+ *	EXPLICIT ELEMENT STYLINGS
+ */
+
+ .priceCell {
+ 	width: 70px !important;
+ }
+/*#deltaHeader {
+ 	padding: 8px 18px !important;
+ }*/
+
+
+ #apptitle {
+	size: 20;
+}
+
+ #graphDiv {
+	height: 450px;
+	width: 700px;
+	padding:0;
+}
+
+#infoDiv {
+	/*height: 450px;*/
+	padding: 15px;
+	vertical-align: top;
+}
+
+.btn-group {
+	margin: 5px 10px;
+}
+
+/**
+ *	STATIC GRAPH STYLING
+ */
+
+ .stockRow:hover {
+ 	cursor:zoom-in;
+ }
+path { 
+    stroke: black;
+    stroke-width: 2;
+    fill: none;
+
+    pointer-events:none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: gray;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+/**
+*  Line chart
+*/
+
+.xaxis, .yaxis {
+	pointer-events:none;
+}
+
+.point-paths path {
+  /*
+  fill: #eee;
+  stroke: #aaa;
+  */
+  stroke-opacity: 0;
+  fill-opacity: 0;
+}
+
+
+.lines path {
+  fill: none;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+
+  transition: stroke-width 250ms linear;
+  -moz-transition: stroke-width 250ms linear;
+  -webkit-transition: stroke-width 250ms linear;
+
+  transition-delay: 250ms
+  -moz-transition-delay: 250ms;
+  -webkit-transition-delay: 250ms;
+
+
+}
+
+.line.hover path {
+  stroke-width: 6px;
+}
+
+.lines .point {
+  transition: stroke-width 250ms linear;
+  -moz-transition: stroke-width 250ms linear;
+  -webkit-transition: stroke-width 250ms linear;
+}
+
+.lines .point.hover {
+  stroke-width: 20px;
+  stroke-opacity: .5;
+}
+
+/**
+ *	DYNAMIC GRAPH STYLING
+ */
+
+.hover-line { 
+  stroke: black;  
+  fill: none;
+  stroke-width: 1px;
+  pointer-events: none;
+
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
