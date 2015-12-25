@@ -10,30 +10,38 @@
 	    <!-- Bootstrap -->
     	<link href="../css/bootstrap.min.css" rel="stylesheet">
     	<link rel="stylesheet" type="text/css" href="../css/stockexplorer.css">
+    	<link rel="stylesheet" type="text/css" href="../css/formations_inputs.css">
 
     	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-    	<script type="text/javascript" src="js/jquery.min.js"></script>
-    	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="../js/jquery.min.js"></script>
+    	<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
 	</head>
 
 	<body>
+		<!-- Title -->
 		<div class="container content-container center" style="margin-top:35px; margin-bottom:20px">
 			<h1 id="apptitle" style="text-align:center">Formations</h1>
 		</div>	
 
-		<div class="form-group col-xs-2" id="stagedims">
-		  <label for="stagedims">Stage Dimensions:</label>
-		  <input type="text" class="form-control" id="usr">
+		<!-- Title -->
+		<div class="container content-container center">
+			<div class="form-group" id="stagedims">
+				<label for="stagedims">Stage Dimensions:&nbsp;&nbsp;</label>
+				<input type="text" class="stagesize" id="stageHeight"> &nbsp; x &nbsp;
+				<input type="text" class="stagesize" id="stageWidth"> &nbsp;&nbsp;
+		        <button class="btn btn-default" type="submit" id="stageResize" style="display:inline">Resize!</button>
+			</div>
 		</div>
 
+		<div></div><script></script>
 
 		<hr>
 		<div class="container content-container center">
-			<p>This project is maintained by <a href="https://github.com/rishizsinha/stockexplorer">rishizsinha</a></p>
+			<p>This project is maintained by <a href="https://github.com/rishizsinha/formations">rishizsinha</a></p>
 		</div>
 
 	</body>
