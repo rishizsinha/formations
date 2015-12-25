@@ -9,10 +9,10 @@ Check here for current tasks to be completed!
 - [x] Add functionality for add person button
 - [x] Make circles draggable
 
-~~ - [ ] Upon button click submitting dimension change, resize height of stage, but keep width the same
-- [ ] Function to calculate circle radii given stage dimensions correpsonding to people. Assume normal person width (diameter) is 2 feet. and transition
+~~Upon button click submitting dimension change, resize height of stage, but keep width the same~~
+~~Function to calculate circle radii given stage dimensions correpsonding to people. Assume normal person width (diameter) is 2 feet. and transition~~
 
-OR ~~
+~~OR~~
 
 - [x] Upon button click submitting dimension change, resize stage rectangle, 
 keeping circle radii the same
