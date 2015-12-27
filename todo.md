@@ -23,7 +23,7 @@ keeping circle radii the same
 - [ ] Add generic gridlines to stage (every 2-4 feet? experiment)
 
 ## Stage 3: Naming People
-- [ ] Add an input field near addPerson button to allow name/initials input
+- [x] Add an input field near addPerson button to allow name/initials input
 - [ ] Change addPerson click function to add a DIV containing text+circle instead
 of adding just a circle (http://stackoverflow.com/questions/13615381/d3-add-text-to-circle)
 - [ ] Keep a column-like div to the RIGHT of the stage containing a list of all
