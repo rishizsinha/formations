@@ -1,3 +1,8 @@
+/**
+ *	DEFINE VARIABLES
+ *
+ */
+
 var svgContainer = d3.select("svg");
 var PIXELSFEET = 25; // Treat as final variable
 // Stage Dimensions and Sizings
@@ -7,6 +12,10 @@ var stageHeight = 24 * PIXELSFEET;
 var stageWidth = 30 * PIXELSFEET; 
 var personRadius = PIXELSFEET; // person radius = 1 foot
 
+/**
+ *	STAGE RESIZING
+ *
+ */
 $("#stageResize").click( function() {
 	// re-assign stageHeight and stageWidth vars
 	// DO ERROR CHECKING / FORM CHECKING TO MAKE SURE STRINGS WERE NOT INPUT
@@ -30,9 +39,26 @@ var lineFunction = d3.svg.line()
     .y(function(d) { return d[1]; })
     .interpolate("linear");
 
+/**
+ *	PERSON CREATION
+ *
+ */
+var names = [];
+
 $("#addPerson").click( function() {
 	// Determine name
 	var name = $("#newPersonName").val()
+	if (names.indexOf(name) == -1) {
+		names.push(name);
+		$("#nameDuplicateError").remove();
+	} else {
+		console.log("exists");
+		if ($("#nameDuplicateError").length <= 0) {
+			$("#personCreationBar").append("<div style='display:inline-block' id='nameDuplicateError'><font color='red'>&nbsp;Sorry, this name already exists!</font></div>");
+		}
+		return;
+	}
+	
 
 	// Add person's "person group" = circle+label
 	var newpersongroup = d3.select("#people").append("g")
@@ -101,7 +127,6 @@ $("#addPerson").click( function() {
 		d3.select("#"+name+"Yaxes")
 		   // .data(yline) // set the new data
 		   .attr("d", lineFunction(yline)); // apply the new data values
-
 	}
 
 	// draggable people
@@ -131,6 +156,26 @@ $("#newPersonName").keyup(function(event){
         $("#addPerson").click();
     }
 });
+
+
+/**
+ *	DEFINE VARIABLES
+ *
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
