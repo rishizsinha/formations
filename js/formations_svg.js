@@ -109,7 +109,7 @@ $("#addPerson").click( function() {
 	  .draggable()
 	  .bind('mousedown', function(event, ui){
 	    // bring target to front
-	    $(svgContainer).append( event.target );
+	    $("#people").append($("#"+name+"Group"));
 	  })
 	  .bind('drag', function(event, ui){
 	    // update coordinates manually, since top/left style props don't work on SVG
