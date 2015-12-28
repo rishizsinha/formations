@@ -31,19 +31,15 @@ var lineFunction = d3.svg.line()
     .interpolate("linear");
 
 $("#addPerson").click( function() {
-	// add circle to "#people" svg group element
-	// console.log("hi");
+	// Determine name
 	var name = $("#newPersonName").val()
 
-	var newgroup = d3.select("#people").append("g")
+	// Add person's "person group" = circle+label
+	var newpersongroup = d3.select("#people").append("g")
 		.attr("id", name+"Group")
 		.attr("class", "personGroup");
 
-	// var newgroupcircle = d3.select("#"+name+"Group").append("g")
-	// 	.attr("id", name+"CircleGroup")
-	// 	.attr("class", "circleGroup")
-
-	newgroup.append("circle")
+	newpersongroup.append("circle")
 		.attr("cy", function() { return Math.random() * 200; })
 		.attr("cx", function() { return Math.random() * 720; })
 		.attr("r", personRadius)
@@ -52,56 +48,61 @@ $("#addPerson").click( function() {
 		.attr("id", name+"Circle");
 
 	// https://www.dashingd3js.com/svg-text-element
-	newgroup.append("text")
+	newpersongroup.append("text")
 		.text(function(d){return name;})
 		.attr("x", function(d){return $("#"+name+"Circle").attr("cx")})
 		.attr("y", function(d){return $("#"+name+"Circle").attr("cy")})
 		.attr("id", name+"Label")
 		.attr("text-anchor", "middle");
 
-	// var xline = [
-	// 	[$("#"+name+"Circle").attr("cx"), -0], 
-	// 	[$("#"+name+"Circle").attr("cx"), 4000]
-	// ];
-	// newgroup.append("path")
-	// 	.attr("class", "line")
-	// 	.style("stroke-dasharray", ("4, 4"))
-	// 	.attr("stroke", "blue")
-	// 	.attr("stroke-width", 2)
-	// 	.attr("d", lineFunction(xline))
-	// 	.attr("id", name+"Xaxes");
+	// Add person's "axis group" = x- and y-axes
+	var newaxisgroup = d3.select("#axes").append("g")
+		.attr("id", name+"Axes")
+		.attr("class", "axisGroup");
 
-	// var yline = [
-	// 	[-4000, $("#"+name+"Circle").attr("cy")], 
-	// 	[4000, $("#"+name+"Circle").attr("cy")]
-	// ];
-	// newgroup.append("path")
-	// 	.attr("class", "line")
-	// 	.style("stroke-dasharray", ("4, 4"))
-	// 	.attr("stroke", "blue")
-	// 	.attr("stroke-width", 2)
-	// 	.attr("d", lineFunction(yline))
-	// 	.attr("id", name+"Yaxes");
+	var xline = [
+		[$("#"+name+"Circle").attr("cx"), -0], 
+		[$("#"+name+"Circle").attr("cx"), 4000]
+	];
+	newaxisgroup.append("path")
+		.attr("class", "line")
+		.style("stroke-dasharray", ("4, 4"))
+		.attr("stroke", "blue")
+		.attr("stroke-width", 2)
+		.attr("d", lineFunction(xline))
+		.attr("id", name+"Xaxes");
 
-	// var moveLine = function() {
-	// 	var xline = [
-	// 		[$("#"+name+"Circle").attr("cx"), 0], 
-	// 		[$("#"+name+"Circle").attr("cx"), $("#stage").attr("height")]
-	// 	];
-	// 	var yline = [
-	// 		[0, $("#"+name+"Circle").attr("cy")], 
-	// 		[$("#stage").attr("width"), $("#"+name+"Circle").attr("cy")]
-	// 	];
+	var yline = [
+		[-4000, $("#"+name+"Circle").attr("cy")], 
+		[4000, $("#"+name+"Circle").attr("cy")]
+	];
+	newaxisgroup.append("path")
+		.attr("class", "line")
+		.style("stroke-dasharray", ("4, 4"))
+		.attr("stroke", "blue")
+		.attr("stroke-width", 2)
+		.attr("d", lineFunction(yline))
+		.attr("id", name+"Yaxes");
 
-	// 	d3.select("#"+name+"Xaxes")
-	// 	   // .data(xline) // set the new data
-	// 	   .attr("d", lineFunction(xline)); // apply the new data values
+	var moveLine = function() {
+		var xline = [
+			[$("#"+name+"Circle").attr("cx"), 0], 
+			[$("#"+name+"Circle").attr("cx"), $("#stage").attr("height")]
+		];
+		var yline = [
+			[0, $("#"+name+"Circle").attr("cy")], 
+			[$("#stage").attr("width"), $("#"+name+"Circle").attr("cy")]
+		];
 
-	// 	d3.select("#"+name+"Yaxes")
-	// 	   // .data(yline) // set the new data
-	// 	   .attr("d", lineFunction(yline)); // apply the new data values
+		d3.select("#"+name+"Xaxes")
+		   // .data(xline) // set the new data
+		   .attr("d", lineFunction(xline)); // apply the new data values
 
-	// }
+		d3.select("#"+name+"Yaxes")
+		   // .data(yline) // set the new data
+		   .attr("d", lineFunction(yline)); // apply the new data values
+
+	}
 
 	// draggable people
 	// http://stackoverflow.com/questions/1108480/svg-draggable-using-jquery-and-jquery-svg
@@ -119,10 +120,17 @@ $("#addPerson").click( function() {
 	    d3.select("#"+name+"Circle").attr("cy", ypos);
 	    d3.select("#"+name+"Label").attr("x", xpos);
 	    d3.select("#"+name+"Label").attr("y", ypos);
-	    // moveLine();
+	    moveLine();
 	  });
 });
 
+// Equivalently allow pressing enter in name-entering field to 
+// trigger add person button
+$("#newPersonName").keyup(function(event){
+    if(event.keyCode == 13){ // "enter" code
+        $("#addPerson").click();
+    }
+});
 
 
 
