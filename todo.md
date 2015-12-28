@@ -24,6 +24,7 @@ keeping circle radii the same
 
 ## Stage 3: Naming People
 - [x] Add an input field near addPerson button to allow name/initials input
+- [x] Have labels functionally added to circles and drag with circle
 - [ ] Change addPerson click function to add a DIV containing text+circle instead
 of adding just a circle (http://stackoverflow.com/questions/13615381/d3-add-text-to-circle)
 - [ ] Keep a column-like div to the RIGHT of the stage containing a list of all
