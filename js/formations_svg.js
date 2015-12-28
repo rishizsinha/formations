@@ -48,10 +48,12 @@ var names = [];
 $("#addPerson").click( function() {
 	// Determine name
 	var name = $("#newPersonName").val()
-	if (names.indexOf(name) == -1) {
+
+	// Check if name already in use
+	if (names.indexOf(name) == -1) { // add to list if not in use
 		names.push(name);
 		$("#nameDuplicateError").remove();
-	} else {
+	} else { // display error and stop if in use
 		console.log("exists");
 		if ($("#nameDuplicateError").length <= 0) {
 			$("#personCreationBar").append("<div style='display:inline-block' id='nameDuplicateError'><font color='red'>&nbsp;Sorry, this name already exists!</font></div>");
@@ -59,15 +61,14 @@ $("#addPerson").click( function() {
 		return;
 	}
 	
-
 	// Add person's "person group" = circle+label
 	var newpersongroup = d3.select("#people").append("g")
 		.attr("id", name+"Group")
 		.attr("class", "personGroup");
 
 	newpersongroup.append("circle")
-		.attr("cy", function() { return Math.random() * 200; })
-		.attr("cx", function() { return Math.random() * 720; })
+		.attr("cy", function() { return 0;})//Math.random() * 200; })
+		.attr("cx", function() { return 0;})//Math.random() * 720; })
 		.attr("r", personRadius)
 		.attr("fill", "white")
 		.attr("stroke", "black")
@@ -111,6 +112,7 @@ $("#addPerson").click( function() {
 		.attr("id", name+"Yaxes");
 
 	var moveLine = function() {
+
 		var xline = [
 			[$("#"+name+"Circle").attr("cx"), 0], 
 			[$("#"+name+"Circle").attr("cx"), $("#stage").attr("height")]
@@ -132,7 +134,11 @@ $("#addPerson").click( function() {
 	// draggable people
 	// http://stackoverflow.com/questions/1108480/svg-draggable-using-jquery-and-jquery-svg
 	$('#'+name+"Group")
-	  .draggable()
+	  .draggable({
+	  	// snap: ".line",
+	  	// snapMode: "inner"
+	  	grid: [ 10, 10 ]
+	  })
 	  .bind('mousedown', function(event, ui){
 	    // bring target to front
 	    $("#people").append($("#"+name+"Group"));
@@ -156,12 +162,6 @@ $("#newPersonName").keyup(function(event){
         $("#addPerson").click();
     }
 });
-
-
-/**
- *	DEFINE VARIABLES
- *
- */
 
 
 
