@@ -25,11 +25,21 @@ keeping circle radii the same
 ## Stage 3: Naming People
 - [x] Add an input field near addPerson button to allow name/initials input
 - [x] Have labels functionally added to circles and drag with circle
-- [ ] Change addPerson click function to add a DIV containing text+circle instead
-of adding just a circle (http://stackoverflow.com/questions/13615381/d3-add-text-to-circle)
+- [x] Change addPerson click function to add a DIV containing text+circle instead
+of adding just a circle (http://stackoverflow.com/questions/13615381/d3-add-text-to-circle) {ENDED UP IMPLEMENTING AS 'g' SVG ELEMENT}
 - [ ] Keep a column-like div to the RIGHT of the stage containing a list of all
 people added to the stage
 - [ ] Upon hovering over name in tracker div, "highlight" the corresponding circle
 (e.g. just change the fill for now)
+
+## Stage 4: Personal and Group Axes
+
+This is one of the hardest stages I think. Essentially whenever a person is created, they should have an x- and y- axis created to explicitly show their relative positions to people. 
+
+Specifically though, the challenge lies in how to represent this. A personal axis can be represented as a part of the person's "group" (which also consists of their circle shape and text name label). But if you want to put multiple people onto an axis, then it is unclear whether any axes group should be a level higher than people groups so that people can be added to axes groups, or whether the axes paths should remain a part of the people, and each changed individually for all people deemed to be on an axis group.
+
+- [ ] build personal axes using svg "path" elements
+- [ ] have the axes shift up/down left/right with dragging people
+- [ ] implement "snapping" (e.g. a way to suggest that circles be aligned with one another). This can be done by have it so that if a circle while being dragged crosses the axes of another circle, will lock into that axis for some short buffer period of drag on either side at which point after it will "break free" on either side
 
 # ~ Fin ~

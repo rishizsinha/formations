@@ -1,5 +1,5 @@
 var svgContainer = d3.select("svg");
-var PIXELSFEET = 25;
+var PIXELSFEET = 25; // Treat as final variable
 // Stage Dimensions and Sizings
 // assume 1ft=25px
 
