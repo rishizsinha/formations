@@ -56,7 +56,8 @@ $("#addPerson").click( function() {
 		.text(function(d){return name;})
 		.attr("x", function(d){return $("#"+name+"Circle").attr("cx")})
 		.attr("y", function(d){return $("#"+name+"Circle").attr("cy")})
-		.attr("id", name+"Label");
+		.attr("id", name+"Label")
+		.attr("text-anchor", "middle");
 
 	// var xline = [
 	// 	[$("#"+name+"Circle").attr("cx"), -0], 
