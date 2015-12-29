@@ -1,3 +1,11 @@
 svg {
   pointer-events: all;
 }
+
+.xline {
+	cursor: move;
+}
+
+.yline {
+	cursor: move;
+}

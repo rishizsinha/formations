@@ -67,8 +67,8 @@ $("#addPerson").click( function() {
 		.attr("class", "personGroup");
 
 	newpersongroup.append("circle")
-		.attr("cy", function() { return 0;})//Math.random() * 200; })
-		.attr("cx", function() { return 0;})//Math.random() * 720; })
+		.attr("cy", function() { return PIXELSFEET;})//Math.random() * 200; })
+		.attr("cx", function() { return PIXELSFEET;})//Math.random() * 720; })
 		.attr("r", personRadius)
 		.attr("fill", "white")
 		.attr("stroke", "black")
@@ -92,7 +92,7 @@ $("#addPerson").click( function() {
 		[$("#"+name+"Circle").attr("cx"), 4000]
 	];
 	newaxisgroup.append("path")
-		.attr("class", "line")
+		.attr("class", "line xline")
 		.style("stroke-dasharray", ("4, 4"))
 		.attr("stroke", "blue")
 		.attr("stroke-width", 2)
@@ -104,7 +104,7 @@ $("#addPerson").click( function() {
 		[4000, $("#"+name+"Circle").attr("cy")]
 	];
 	newaxisgroup.append("path")
-		.attr("class", "line")
+		.attr("class", "line yline")
 		.style("stroke-dasharray", ("4, 4"))
 		.attr("stroke", "blue")
 		.attr("stroke-width", 2)
@@ -112,7 +112,6 @@ $("#addPerson").click( function() {
 		.attr("id", name+"Yaxes");
 
 	var moveLine = function() {
-
 		var xline = [
 			[$("#"+name+"Circle").attr("cx"), 0], 
 			[$("#"+name+"Circle").attr("cx"), $("#stage").attr("height")]
@@ -121,13 +120,9 @@ $("#addPerson").click( function() {
 			[0, $("#"+name+"Circle").attr("cy")], 
 			[$("#stage").attr("width"), $("#"+name+"Circle").attr("cy")]
 		];
-
 		d3.select("#"+name+"Xaxes")
-		   // .data(xline) // set the new data
 		   .attr("d", lineFunction(xline)); // apply the new data values
-
 		d3.select("#"+name+"Yaxes")
-		   // .data(yline) // set the new data
 		   .attr("d", lineFunction(yline)); // apply the new data values
 	}
 
@@ -135,15 +130,18 @@ $("#addPerson").click( function() {
 	// http://stackoverflow.com/questions/1108480/svg-draggable-using-jquery-and-jquery-svg
 	$('#'+name+"Group")
 	  .draggable({
-	  	// snap: ".line",
-	  	// snapMode: "inner"
-	  	grid: [ 10, 10 ]
+	  	cursor: "move",
+	  	grid: [ 5, 5 ]
 	  })
 	  .bind('mousedown', function(event, ui){
 	    // bring target to front
 	    $("#people").append($("#"+name+"Group"));
 	  })
 	  .bind('drag', function(event, ui){
+	  	console.log(ui);
+	  	// console.log(ui.originalPosition);
+	  	// console.log($("#"+name+"Circle").attr("cx") + " " + $("#"+name+"Circle").attr("cy"));
+	  	// console.log($("svg").offset());
 	    // update coordinates manually, since top/left style props don't work on SVG
 	    var xpos = ui.position.left-$("svg").offset().left+personRadius;
 	    var ypos = ui.position.top-$("svg").offset().top+personRadius;
@@ -153,7 +151,48 @@ $("#addPerson").click( function() {
 	    d3.select("#"+name+"Label").attr("y", ypos);
 	    moveLine();
 	  });
+
+	// draggable axes
+	var groupedElementsX = []
+	$("#"+name+"Xaxes")
+		.draggable({
+			grid: [ 5, 5 ]
+		})
+		.bind('mousedown', function(event, ui){
+			groupedElementsX = [];
+			for (var i = 0; i < names.length; i++) {
+				var name = names[i];
+				// console.log(event.target.getAttribute("d"));
+				if (event.target.getAttribute("d") == $("#"+name+"Xaxes").attr("d")) {
+					groupedElementsX.push(name);
+				}
+			}
+			// console.log(groupedElementsX);
+		})
+		.bind('drag', function(event, ui){
+			console.log(ui);
+			// var e1 = jQuery.event("mousedown");
+			var e2 = jQuery.Event("drag");
+			for (var i = 0; i < groupedElementsX.length; i++) {
+				var name = groupedElementsX[i];
+				// jQuery("#"+name+"Group").trigger(e1)
+				// console.log("trynna drag");				
+				jQuery("#"+name+"Group").trigger(e2, ui);
+			}
+		});
+
+	$("#"+name+"Yaxes")
+		.draggable({
+			grid: [ 5, 5 ]
+		});
 });
+
+// var findAxisGroup = function(a, e, u) {
+// 	var elements = []
+// 	for (name in names) {
+// 		if event.target.d 
+// 	}
+// }
 
 // Equivalently allow pressing enter in name-entering field to 
 // trigger add person button

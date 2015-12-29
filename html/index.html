@@ -14,6 +14,7 @@
     	<link rel="stylesheet" type="text/css" href="../css/formations_inputs.css">
     	<link rel="stylesheet" type="text/css" href="../css/formations.css">
     	<link rel="stylesheet" type="text/css" href="../css/formations_svg.css">
+    	<link rel="stylesheet" type="text/css" href="../css/formations_attr.css">
 
     	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -39,6 +40,35 @@
 				<input type="text" class="stagesize" id="stageHeight" value="24"> &nbsp; x &nbsp;
 				<input type="text" class="stagesize" id="stageWidth" value="30"> &nbsp;&nbsp;
 		        <button class="btn btn-default" type="submit" id="stageResize" style="display:inline">Resize!</button>
+			</div>
+		</div>
+
+		<!-- Attributes Bar -->
+		<div class="container content-container center">
+			<div class="row" id="attributeBar">	
+				<label for="attributeBar">Attributes:&nbsp;&nbsp;</label>
+
+				<div class="dropdown" style="display:inline-block">
+				  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+				  <span class="caret"></span></button>
+				  <ul class="dropdown-menu">
+				    <li><a href="#">HTML</a></li>
+				    <li><a href="#">CSS</a></li>
+				    <li><a href="#">JavaScript</a></li>
+				  </ul>
+				</div>
+
+				<!-- <div class="col-md-4"> </div> -->
+			
+				<div class="col-md-4" style="display:inline-block">
+					<div class="input-group col-md-4">
+				      <input type="text" class="form-control" placeholder="New Attribute">
+				      <span class="input-group-btn">
+				        <button class="btn btn-secondary" type="button" id="addAttr">+</button>
+				      </span>
+				    </div>
+				</div>
+				<!-- <button class="btn btn-default" type="button" id="addAttr" style="display:inline-block">+</button> -->
 			</div>
 		</div>
 
