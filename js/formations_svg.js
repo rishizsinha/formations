@@ -87,8 +87,8 @@ $("#addPerson").click( function() {
 		.attr("class", "axisGroup");
 
 	var xline = [
-		[$("#"+name+"Circle").attr("cx"), -0], 
-		[$("#"+name+"Circle").attr("cx"), 4000]
+		[$("#"+name+"Circle").attr("cx"), 0], 
+		[$("#"+name+"Circle").attr("cx"), $("#stage").attr("height")]
 	];
 	newaxisgroup.append("path")
 		.attr("class", "line xline")
@@ -99,8 +99,8 @@ $("#addPerson").click( function() {
 		.attr("id", name+"Xaxes");
 
 	var yline = [
-		[-4000, $("#"+name+"Circle").attr("cy")], 
-		[4000, $("#"+name+"Circle").attr("cy")]
+		[0, $("#"+name+"Circle").attr("cy")], 
+		[$("#stage").attr("width"), $("#"+name+"Circle").attr("cy")]
 	];
 	newaxisgroup.append("path")
 		.attr("class", "line yline")
@@ -151,50 +151,41 @@ $("#addPerson").click( function() {
 	    moveLine(name);
 	};
 
-	var multidragObjs;
+	var multidragObjs, multidragPositions;
 	var multidraggrouper = function(axis) {
 		return function(event, ui) {
-			// var dragstring = ""
-			// for (var i = 0; i < names.length; i++) {
-			// 	var name = names[i];
-			// 	// console.log(event.target.getAttribute("d"));
-			// 	if (event.target.getAttribute("d") == $("#"+name+axis+"axes").attr("d")) {
-			// 		dragstring += "#"+name+"Group,";
-			// 	}
-			// }
-			// dragstring = dragstring.substring(0, dragstring.length-1)
-			// multidragObjs = $(dragstring)
 			multidragObjs = [];
+			multidragPositions = []
 			for (var i = 0; i < names.length; i++) {
 				var name = names[i];
 				if (event.target.getAttribute("d") == $("#"+name+axis+"axes").attr("d")) {
 					multidragObjs.push(name);
+					multidragPositions.push([parseInt($("#"+name+"Circle").attr("cx")),
+        								parseInt($("#"+name+"Circle").attr("cy"))]);
 				}
 			}
-			console.log(multidragObjs);
+			// console.log(multidragPositions);
 		}
 	};
-
 	var multidragger = function(event, ui) {
-		// console.log(multidragObjs);
-		// console.log(ui);
-  //       var currentLoc = $(this).position();
-  //       // console.log(currentLoc);
-  //       console.log($(this));
-  //       var prevLoc = $(this).data('prevLoc');
-  //       if (!prevLoc) {
-
-  //           prevLoc = ui.originalPosition;
-  //       }
-  //       console.log(prevLoc);
-
         var offsetLeft = ui.position.left-ui.originalPosition.left;
         var offsetTop = ui.position.top-ui.originalPosition.top;
-        $.each(multidragObjs, function(i, v) {
-        	var l = $("#"+name+"Circle").attr("cx")+offsetLeft;
-        	var t = $("#"+name+"Circle").attr("cy")+offsetTop;
-        	movePersonCircle(v, offsetLeft, offsetTop);
-        });
+        console.log(offsetLeft+", "+offsetTop);
+        for (var i = 0; i < multidragObjs.length; i++) {
+        	var n = multidragObjs[i];
+        	var p = multidragPositions[i];
+	        var l = p[0]+offsetLeft;
+	        var t = p[1]+offsetTop;
+	        movePersonCircle(n, l, t);
+        }
+        // $.each(multidragObjs, function(i, v) {
+        // 	var l = parseInt($("#"+name+"Circle").attr("cx"))+offsetLeft;
+        // 	var t = parseInt($("#"+name+"Circle").attr("cy"))+offsetTop;
+        // 	console.log(parseInt($("#"+name+"Circle").attr("cx")),
+        // 		parseInt($("#"+name+"Circle").attr("cy")));
+        // 	console.log(l+", "+t);
+        // 	movePersonCircle(v, l, t);
+        // });
     };
 
 	// draggable axes
@@ -205,28 +196,6 @@ $("#addPerson").click( function() {
 			drag: multidragger,
 			grid: [ 5, 5 ]
 		})
-		// .bind('mousedown', function(event, ui){
-		// // at dragtime, determine drag group
-		// 	groupedElementsX = [];
-		// 	for (var i = 0; i < names.length; i++) {
-		// 		var name = names[i];
-		// 		// console.log(event.target.getAttribute("d"));
-		// 		if (event.target.getAttribute("d") == $("#"+name+"Xaxes").attr("d")) {
-		// 			groupedElementsX.push(name);
-		// 		}
-		// 	}
-		// })
-		// .bind('drag', function(event, ui){
-		// 	console.log(ui);
-		// 	// var e1 = jQuery.event("mousedown");
-		// 	var e2 = jQuery.Event("drag");
-		// 	for (var i = 0; i < groupedElementsX.length; i++) {
-		// 		var name = groupedElementsX[i];
-		// 		// jQuery("#"+name+"Group").trigger(e1)
-		// 		// console.log("trynna drag");				
-		// 		jQuery("#"+name+"Group").trigger(e2, ui);
-		// 	}
-		// });
 
 	$("#"+name+"Yaxes")
 		.draggable({
@@ -234,29 +203,6 @@ $("#addPerson").click( function() {
 			drag: multidragger,
 			grid: [ 5, 5 ]
 		})
-		// .bind('mousedown', function(event, ui){
-		// 	groupedElementsY = [];
-		// 	for (var i = 0; i < names.length; i++) {
-		// 		var name = names[i];
-		// 		// console.log(event.target.getAttribute("d"));
-		// 		if (event.target.getAttribute("d") == $("#"+name+"Yaxes").attr("d")) {
-		// 			groupedElementsY.push(name);
-		// 		}
-		// 	}
-		// 	// console.log(groupedElementsY);
-		// })
-		// .bind('drag', function(event, ui){
-		// 	console.log(ui);
-		// 	// var e1 = jQuery.event("mousedown");
-		// 	var e2 = jQuery.Event("drag");
-		// 	for (var i = 0; i < groupedElementsY.length; i++) {
-		// 		var name = groupedElementsY[i];
-		// 		// jQuery("#"+name+"Group").trigger(e1)
-		// 		// console.log("trynna drag");				
-		// 		jQuery("#"+name+"Group").trigger(e2, ui);
-		// 	}
-		// });
-	
 });
 
 
