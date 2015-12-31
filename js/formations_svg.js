@@ -151,6 +151,7 @@ $("#addPerson").click( function() {
 	    moveLine(name);
 	};
 
+	// http://jsfiddle.net/zVZFq/358/ 
 	var multidragObjs, multidragPositions;
 	var multidraggrouper = function(axis) {
 		return function(event, ui) {
@@ -164,7 +165,6 @@ $("#addPerson").click( function() {
         								parseInt($("#"+name+"Circle").attr("cy"))]);
 				}
 			}
-			// console.log(multidragPositions);
 		}
 	};
 	var multidragger = function(event, ui) {
@@ -178,31 +178,21 @@ $("#addPerson").click( function() {
 	        var t = p[1]+offsetTop;
 	        movePersonCircle(n, l, t);
         }
-        // $.each(multidragObjs, function(i, v) {
-        // 	var l = parseInt($("#"+name+"Circle").attr("cx"))+offsetLeft;
-        // 	var t = parseInt($("#"+name+"Circle").attr("cy"))+offsetTop;
-        // 	console.log(parseInt($("#"+name+"Circle").attr("cx")),
-        // 		parseInt($("#"+name+"Circle").attr("cy")));
-        // 	console.log(l+", "+t);
-        // 	movePersonCircle(v, l, t);
-        // });
     };
 
 	// draggable axes
-	var multidragObjs;
 	$("#"+name+"Xaxes")
 		.draggable({
 			start: multidraggrouper("X"),
 			drag: multidragger,
 			grid: [ 5, 5 ]
-		})
-
+		});
 	$("#"+name+"Yaxes")
 		.draggable({
 			start: multidraggrouper("Y"),
 			drag: multidragger,
 			grid: [ 5, 5 ]
-		})
+		});
 });
 
 
@@ -213,20 +203,4 @@ $("#newPersonName").keyup(function(event){
         $("#addPerson").click();
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

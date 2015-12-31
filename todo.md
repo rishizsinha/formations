@@ -58,7 +58,9 @@ Update 12/28/15: Stage simplified to fully-completed personal axes
 {add further after design built}
 
 ## Stage 7: Group Axes
-- [ ] Implement group axis movement via checking for equivalent axis position elements
+- [x] Implement group axis movement via checking for equivalent axis position elements
+
+## Stage 8: Rotational Axes
 
 # End Phase 1 
 
