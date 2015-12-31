@@ -45,7 +45,27 @@
 
 		<!-- Attributes Bar -->
 		<div class="container content-container center">
-			<div class="row" id="attributeBar">	
+			<div class="row" id="attributeBar">
+			  <div class="col-md-4">
+			    <div class="input-group">
+			      <input type="text" class="form-control" placeholder="{Attribute}:{Option1},{Option2},...">
+			      <span class="input-group-btn">
+			        <button class="btn btn-secondary" type="button">+</button>
+			      </span>
+			    </div>
+			  </div>
+			  <div class="dropdown" style="display:inline-block">
+				  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+				  <span class="caret"></span></button>
+				  <ul class="dropdown-menu">
+				    <li><a href="#">HTML <button class="btn btn-secondary" type="button">+</button></a></li>
+				    <li><a href="#">CSS</a></li>
+				    <li><a href="#">JavaScript</a></li>
+				  </ul>
+				</div>
+			</div>
+
+			<!-- <div class="row" id="attributeBar">	
 				<label for="attributeBar">Attributes:&nbsp;&nbsp;</label>
 
 				<div class="dropdown" style="display:inline-block">
@@ -58,7 +78,7 @@
 				  </ul>
 				</div>
 
-				<!-- <div class="col-md-4"> </div> -->
+				<div class="col-md-4"> </div>
 			
 				<div class="col-md-4" style="display:inline-block">
 					<div class="input-group col-md-4">
@@ -68,25 +88,25 @@
 				      </span>
 				    </div>
 				</div>
-				<!-- <button class="btn btn-default" type="button" id="addAttr" style="display:inline-block">+</button> -->
-			</div>
+				 <button class="btn btn-default" type="button" id="addAttr" style="display:inline-block">+</button>
+			</div> -->
 		</div>
 
 		<!-- Stage + Stage Row -->
 		<div class="container content-container center" style="margin-top:20px">
-			<svg width="750" height="600">
-			    <rect x="0" y="0" width="750" height="600" fill="white" stroke="black" stroke-width="3" id="stage"/>
-			    <g id="axes"></g>
-			    <g id="people"></g>
-
-			</svg>
 			<!-- "Add Person" Button -->
 			<div id="personCreationBar">
 				<input type="text" id="newPersonName" placeholder="Name">
 				<button class="btn btn-default" type="submit" id="addPerson" style="display:inline-block">Add Person</button>
 			</div>
+			<svg width="750" height="600">
+			    <rect x="0" y="0" width="750" height="600" fill="white" stroke="black" stroke-width="3" id="stage"/>
+			    <g id="axes"></g>
+			    <g id="people"></g>
+			</svg>
 		</div>
 		<script type="text/javascript" src="../js/formations_svg.js"></script>
+		<script type="text/javascript" src="../js/formations_attr.js"></script>
 		
 		<!-- Credits -->
 		<hr>
