@@ -27,19 +27,28 @@ $("#addAttr").click(
 			.attr("class", "dropdown-menu")
 			.attr("id", attrName+"OptList");
 		for (var i = 0; i < attrOpts.length; i++) {
-			// console.log("<a href='#'>"+attrOpts[i]+"<button class='btn btn-secondary \
-			// 		pull-right btn-xs' id='"+attrName+i+"ColorSelect' type='button'> \
-			// 		&nbsp;&nbsp;&nbsp;</button></a>");
 			var curli = optlist.append("li")
-				.html("<a href='#'>"+attrOpts[i]+"<button class='btn btn-secondary \
-					pull-right btn-xs' id='"+attrName+i+"ColorSelect' type='button'> \
-					&nbsp;&nbsp;&nbsp;</button></a>");
-
+				// .html("<a href='#'>"+attrOpts[i]+"<button class='btn btn-secondary \
+				// 	pull-right btn-xs jscolor {valueElement:null,value:'66ccff'}' id='"+attrName+i+"ColorSelect' type='button'> \
+				// 	&nbsp;&nbsp;&nbsp;</button></a>");
+				.html("<a href='#'>"+attrOpts[i]+"<button class='btn pull-right btn-xs' \
+					id='"+attrName+i+"ColorSelect'>&nbsp;&nbsp;&nbsp;</button></a>");
+			$("#"+attrName+i+"ColorSelect").colorpicker({container});
 		}
 		optlist.append("li")
 			.html("<a href='#'><button class='btn btn-secondary \
 					pull-right btn-xs btn-block' id='"+attrName+"AddOpt' type='button'> \
 					Add Option</button></a>");
+
+		$('.colorpicker').on({
+			"click":function(e){
+				console.log("clicked");
+				if ($(e.target).hasClass("")) {
+					console.log("true");
+					e.stopPropagation();
+				}
+		    }
+		});
 
 	});
 

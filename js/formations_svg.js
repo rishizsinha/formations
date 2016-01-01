@@ -193,7 +193,6 @@ $("#addPerson").click( function() {
 		});
 });
 
-
 // Equivalently allow pressing enter in name-entering field to 
 // trigger add person button
 $("#newPersonName").keyup(function(event){
