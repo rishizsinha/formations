@@ -1,32 +1,52 @@
 var attributes = [];
 attrBar = d3.select("#attributeBar");
+var attrParse = function(s){
+	if (s.indexOf(":") === -1) {
+		return [ s, [] ];
+	} else {
+		s = s.split(":");
+		return [ s[0], s[1].split(",")];
+	}
+};
 
-$("#addAttr").click(){ function() {
-	console.log("clicked");
-	newattr = attrBar.append("div")
-		.attr("class", "dropdown")
-		.attr("class", "personAttribute");
+$("#addAttr").click(
+	function() {
+		var input = attrParse($("#newAttrInfo").val());
+		var attrName = input[0];
+		var attrOpts = input[1];
 
-	newattr.append("button")
-		.attr("class", "btn")
-		.attr("class", "btn-primary")
-		.attr("dropdown-toggle")
-		.attr("type", "button")
-		.attr("data-toggle", "dropdown")
-		.html(CUSTOM+"<span class='caret'></span>");
+		var newattr = attrBar.append("div")
+			.attr("class", "dropdown personAttribute");
+		newattr.append("button")
+			.attr("class", "btn btn-primary dropdown-toggle")
+			.attr("type", "button")
+			.attr("data-toggle", "dropdown")
+			.html(attrName+"&nbsp;<span class='caret'></span>");
 
-	newattr.append("ul")
-		.attr("class", "dropdown-menu");
+		var optlist = newattr.append("ul")
+			.attr("class", "dropdown-menu")
+			.attr("id", attrName+"OptList");
+		for (var i = 0; i < attrOpts.length; i++) {
+			// console.log("<a href='#'>"+attrOpts[i]+"<button class='btn btn-secondary \
+			// 		pull-right btn-xs' id='"+attrName+i+"ColorSelect' type='button'> \
+			// 		&nbsp;&nbsp;&nbsp;</button></a>");
+			var curli = optlist.append("li")
+				.html("<a href='#'>"+attrOpts[i]+"<button class='btn btn-secondary \
+					pull-right btn-xs' id='"+attrName+i+"ColorSelect' type='button'> \
+					&nbsp;&nbsp;&nbsp;</button></a>");
 
+		}
+		optlist.append("li")
+			.html("<a href='#'><button class='btn btn-secondary \
+					pull-right btn-xs btn-block' id='"+attrName+"AddOpt' type='button'> \
+					Add Option</button></a>");
 
-}};
+	});
 
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">HTML</a></li>
-    <li><a href="#">CSS</a></li>
-    <li><a href="#">JavaScript</a></li>
-  </ul>
-</div>
+// Equivalently allow pressing enter in attr-entering field to 
+// trigger add attr button
+$("#newAttrInfo").keyup(function(event){
+    if(event.keyCode == 13){ // "enter" code
+        $("#addAttr").click();
+    }
+});

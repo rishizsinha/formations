@@ -170,7 +170,6 @@ $("#addPerson").click( function() {
 	var multidragger = function(event, ui) {
         var offsetLeft = ui.position.left-ui.originalPosition.left;
         var offsetTop = ui.position.top-ui.originalPosition.top;
-        console.log(offsetLeft+", "+offsetTop);
         for (var i = 0; i < multidragObjs.length; i++) {
         	var n = multidragObjs[i];
         	var p = multidragPositions[i];
@@ -179,7 +178,6 @@ $("#addPerson").click( function() {
 	        movePersonCircle(n, l, t);
         }
     };
-
 	// draggable axes
 	$("#"+name+"Xaxes")
 		.draggable({
