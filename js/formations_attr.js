@@ -33,7 +33,7 @@ $("#addAttr").click(
 				// 	&nbsp;&nbsp;&nbsp;</button></a>");
 				.html("<a href='#'>"+attrOpts[i]+"<button class='btn pull-right btn-xs' \
 					id='"+attrName+i+"ColorSelect'>&nbsp;&nbsp;&nbsp;</button></a>");
-			$("#"+attrName+i+"ColorSelect").colorpicker({container});
+			$("#"+attrName+i+"ColorSelect").colorpicker();
 		}
 		optlist.append("li")
 			.html("<a href='#'><button class='btn btn-secondary \

@@ -201,3 +201,11 @@ $("#newPersonName").keyup(function(event){
     }
 });
 
+$("#showAxes").change(function() {
+	if ($("#showAxes").prop("checked")) {
+		$("#axes").show();
+	} else {
+		$("#axes").hide();
+	}
+});
+
