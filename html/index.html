@@ -28,7 +28,7 @@
 		<script type="text/javascript" src="../js/jscolor.js"></script>
 		<script type="text/javascript" src="../js/bootstrap-colorpicker.min.js"></script>
 
-		<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-ui.min.js"></script> 
 	</head>
 
 	<body>
@@ -43,8 +43,12 @@
 				<label for="stagedims">Stage Dimensions:&nbsp;&nbsp;</label>
 				<input type="text" class="stagesize" id="stageHeight" value="24"> &nbsp; x &nbsp;
 				<input type="text" class="stagesize" id="stageWidth" value="30"> &nbsp;&nbsp;
-		        <button class="btn btn-default" type="submit" id="stageResize" style="display:inline">Resize!</button>
+		        <button class="btn btn-default" type="submit" id="stageResize" style="display:inline">Resize!</button>&nbsp;&nbsp;
+		        <span class="glyphicon glyphicon-info-sign" id="stageResizeTooltip" data-toggle="tooltip" data-placement="right" title="HI"></span>
 			</div>
+			<!-- <div class="alert alert-info">
+			  Enter desired dimensions in feet, height by width for accurate formation sizing!
+			</div> -->
 		</div>
 
 		<!-- Attributes Bar -->
@@ -79,6 +83,7 @@
 		</div>
 		<script type="text/javascript" src="../js/formations_svg.js"></script>
 		<script type="text/javascript" src="../js/formations_attr.js"></script>
+		<script type="text/javascript" src="../js/formations_info.js"></script>
 		
 		<!-- Credits -->
 		<hr>
